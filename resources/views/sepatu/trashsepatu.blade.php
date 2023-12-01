@@ -39,51 +39,48 @@
   </button>
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav">
-        <li class="nav-item active">
-            <a class="nav-link" href="/home">Home</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/selling">Data transaksi</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/supervise"
-                >Supervisi Penjual</a
-            >
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/seller">Penjual</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/bike">Sepatu</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/profile">Profile</a>
-        </li>
-        <li class="nav-item">
-            <a class="nav-link" href="/logout">Logout</a>
-        </li>
+      <li class="nav-item active">
+        <a class="nav-link" href="/home">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/selling">Data transaksi</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/supervise"
+            >Supervisi Penjual</a
+        >
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/seller">Penjual</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/bike">Sepatu</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/profile">Profile</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/logout">Logout</a>
+    </li>
     </ul>
   </div>
   </nav>
 
     <div id="headerpenjualan">
-        <h1 id="headerpenjualantext">Pengelolaan sepatu</h1>
+        <h1 id="headerpenjualantext">Pengelolaan data sepatu yang terhapus</h1>
     </div>
 
     <div class="container text-center">
     <div class="row">
         <div class="col-1">
-            <a type="button" class="btn btn-outline-warning" href="/bike">Refresh</a>
+            <a type="button" class="btn btn-outline-warning" href="/trashbike">Refresh</a>
         </div>
         <div class="col-1">
-            <a type="button" class="btn btn-outline-info" href="/createbike">Create</a>
-        </div>
-        <div class="col-1">
-            <a type="button" class="btn btn-outline-danger" href="/trashbike">Trash</a>
+            <a type="button" class="btn btn-outline-dark" href="/bike">Kembali</a>
         </div>
         <div class="col">
             <!-- Dropdown Start -->
-            <form action="/bike" method="get" class="form-inline">
+            <form action="/trashbike" method="get" class="form-inline">
                 <div class="input-group">
                     <label for="sort_by" class="input-group-text">Sort by:</label>
                     <select name="sort_by" id="sort_by" class="form-select" onchange="this.form.submit()">
@@ -96,7 +93,7 @@
             <!-- Dropdown End -->
         </div>
         <div class="col">
-        <form class="d-flex" role="search" method="get" action="/bike">
+        <form class="d-flex" role="search" method="get" action="/trashbike">
         <input class="form-control me-2" type="search" placeholder="Cari sepatu" aria-label="Search" name="search">
         <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
@@ -108,9 +105,9 @@
     <thead>
         <tr>
             <th scope="col">No</th>
-            <th scope="col">Merek sepatu</th>
-            <th scope="col">Jenis sepatu</th>
-            <th scope="col">Nama sepatu</th>
+            <th scope="col">Merek Sepatu</th>
+            <th scope="col">Jenis Sepatu</th>
+            <th scope="col">Nama Sepatu</th>
             <th scope="col">Masa Garansi</th>
             <th scope="col">Harga</th>
             <th scope="col">Action</th>
@@ -120,18 +117,21 @@
       @foreach ($data as $index => $row)
           <tr>
               <th scope="row">{{ $index + 1 }}</th>
-              <td>{{ $row->merek_sepeda }}</td>
-              <td>{{ $row->jenis_sepeda }}</td>
-              <td>{{ $row->nama_sepeda }}</td>
+              <td>{{ $row->merek_sepatu }}</td>
+              <td>{{ $row->jenis_sepatu }}</td>
+              <td>{{ $row->nama_sepatu }}</td>
               <td>{{ $row->masa_garansi }} Tahun</td>
               <td>{{ $row->harga }}</td>
               <td>
-                  <a href="{{ route('editBikePage', ['id' => $row->id_sepeda]) }}" class="btn btn-primary">Edit</a>
-  
-                  <form action="{{ route('deleteBike', ['id' => $row->id_sepeda]) }}" method="post" class="d-inline">
+                <form action="{{ route('recoverBike', ['id' => $row->id_sepatu]) }}" method="post" class="d-inline">
+                    @csrf
+                    @method('put')
+                    <button type="submit" class="btn btn-info ml-2">Recover</button>
+                </form>
+                  <form action="{{ route('hardDeleteBike', ['id' => $row->id_sepatu]) }}" method="post" class="d-inline">
                       @csrf
-                      @method('put')
-                      <button type="submit" class="btn btn-danger ml-2">Delete</button>
+                      @method('delete')
+                      <button type="submit" class="btn btn-danger ml-2">Permanent Remove</button>
                   </form>
               </td>
           </tr>

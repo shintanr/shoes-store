@@ -10,11 +10,11 @@ class HomeController extends Controller
     public function index() {
 
         $data = DB::select('
-        SELECT users.*, transaksi.*, sepeda.*
+        SELECT users.*, transaksi.*, sepatu.*
         FROM users
         INNER JOIN transaksi ON users.id = transaksi.id_user
-        INNER JOIN sepeda ON transaksi.id_sepeda = sepeda.id_sepeda
-        WHERE sepeda.deleted_at IS NULL
+        INNER JOIN sepatu ON transaksi.id_sepatu = sepatu.id_sepatu
+        WHERE sepatu.deleted_at IS NULL
         ORDER BY transaksi.tanggal_transaksi DESC
         LIMIT 5
 

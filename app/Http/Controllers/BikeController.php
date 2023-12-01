@@ -9,38 +9,38 @@ class BikeController extends Controller
 {
     public function index(Request $request) {
         $sortBy = $request->input('sort_by', 'alphabet');
-        $sortColumn = 'nama_sepeda';
+        $sortColumn = 'nama_sepatu';
         $sortDirection = 'DESC';
         $searchTerm = $request->input('search', '');
 
         switch ($sortBy) {
             case 'alphabet':
-                $sortColumn = 'nama_sepeda';
+                $sortColumn = 'nama_sepatu';
                 $sortDirection = 'ASC';
                 break;
             case 'reversed':
-                $sortColumn = 'nama_sepeda';
+                $sortColumn = 'nama_sepatu';
                 $sortDirection = 'DESC';
                 break;
         }
 
         $data = DB::select("
         SELECT *
-        FROM sepeda
-        WHERE sepeda.deleted_at IS NULL
+        FROM sepatu
+        WHERE sepatu.deleted_at IS NULL
         ORDER BY $sortColumn $sortDirection
     ");
 
     if ($searchTerm !== '') {
         $data = DB::select("
         SELECT *
-        FROM sepeda
-        WHERE sepeda.nama_sepeda LIKE '%$searchTerm%'
-        AND sepeda.deleted_at IS NULL
+        FROM sepatu
+        WHERE sepatu.nama_sepatu LIKE '%$searchTerm%'
+        AND sepatu.deleted_at IS NULL
         ORDER BY $sortColumn $sortDirection
         ");
     }
-        return view ('sepeda.listsepeda')->with('data', $data);
+        return view ('sepatu.listsepatu')->with('data', $data);
     }
 
     public function createBikePage() {
@@ -48,26 +48,26 @@ class BikeController extends Controller
         SELECT *
         FROM sellers
         ");
-        return view ('sepeda.createbike')->with('data', $data);
+        return view ('sepatu.createshoes')->with('data', $data);
     }
 
     public function createBike(Request $request) {
         $request->validate([
-            'merek_sepeda' => 'required',
-            'jenis_sepeda' => 'required',
-            'nama_sepeda' => 'required',
+            'merek_sepatu' => 'required',
+            'jenis_sepatu' => 'required',
+            'nama_sepatu' => 'required',
             'masa_garansi' => 'required|numeric',
             'harga' => 'required',
             'id_penjual' => 'required'
         ]);
 
         DB::insert("
-        INSERT INTO sepeda (merek_sepeda, jenis_sepeda, nama_sepeda, masa_garansi, harga, id_penjual)
+        INSERT INTO sepatu (merek_sepatu, jenis_sepatu, nama_sepatu, masa_garansi, harga, id_penjual)
         VALUES (?, ?, ?, ?, ?, ?)
         ", [
-        $request->merek_sepeda,
-        $request->jenis_sepeda,
-        $request->nama_sepeda,
+        $request->merek_sepatu,
+        $request->jenis_sepatu,
+        $request->nama_sepatu,
         $request->masa_garansi,
         $request->harga,
         $request->id_penjual,
@@ -84,37 +84,37 @@ class BikeController extends Controller
 
         $currentdata = DB::select("
         SELECT *
-        FROM sepeda
-        WHERE id_sepeda = $id
+        FROM sepatu
+        WHERE id_sepatu = $id
         ");
 
         $currentdata = $currentdata[0];
-        return view ('sepeda.editsepeda')->with('data', $data)->with('currentdata', $currentdata);
+        return view ('sepatu.editsepatu')->with('data', $data)->with('currentdata', $currentdata);
     }
 
     public function editBike(Request $request, $id) {
         $request->validate([
-            'merek_sepeda' => 'required',
-            'jenis_sepeda' => 'required',
-            'nama_sepeda' => 'required',
+            'merek_sepatu' => 'required',
+            'jenis_sepatu' => 'required',
+            'nama_sepatu' => 'required',
             'masa_garansi' => 'required|numeric',
             'harga' => 'required',
             'id_penjual' => 'required'
         ]);
 
         DB::update("
-        UPDATE sepeda
-        SET merek_sepeda = ?,
-            jenis_sepeda = ?,
-            nama_sepeda = ?,
+        UPDATE sepatu
+        SET merek_sepatu = ?,
+            jenis_sepatu = ?,
+            nama_sepatu = ?,
             masa_garansi = ?,
             harga = ?,
             id_penjual = ?
-        WHERE id_sepeda = ?
+        WHERE id_sepatu = ?
     ", [
-        $request->merek_sepeda,
-        $request->jenis_sepeda,
-        $request->nama_sepeda,
+        $request->merek_sepatu,
+        $request->jenis_sepatu,
+        $request->nama_sepatu,
         $request->masa_garansi,
         $request->harga,
         $request->id_penjual,
@@ -127,9 +127,9 @@ class BikeController extends Controller
     public function deleteBike($id) {
         $date = date("Y-m-d");
         DB::update("
-        UPDATE sepeda
+        UPDATE sepatu
         SET deleted_at = '$date'
-        WHERE id_sepeda = ?
+        WHERE id_sepatu = ?
     ", [
         $id
     ]);
@@ -139,45 +139,45 @@ class BikeController extends Controller
 
     public function trashBikeIndex(Request $request) {
         $sortBy = $request->input('sort_by', 'alphabet');
-        $sortColumn = 'nama_sepeda';
+        $sortColumn = 'nama_sepatu';
         $sortDirection = 'DESC';
         $searchTerm = $request->input('search', '');
 
         switch ($sortBy) {
             case 'alphabet':
-                $sortColumn = 'nama_sepeda';
+                $sortColumn = 'nama_sepatu';
                 $sortDirection = 'ASC';
                 break;
             case 'reversed':
-                $sortColumn = 'nama_sepeda';
+                $sortColumn = 'nama_sepatu';
                 $sortDirection = 'DESC';
                 break;
         }
 
         $data = DB::select("
         SELECT *
-        FROM sepeda
-        WHERE sepeda.deleted_at IS NOT NULL
+        FROM sepatu
+        WHERE sepatu.deleted_at IS NOT NULL
         ORDER BY $sortColumn $sortDirection
     ");
 
     if ($searchTerm !== '') {
         $data = DB::select("
         SELECT *
-        FROM sepeda
-        WHERE sepeda.nama_sepeda LIKE '%$searchTerm%'
-        AND sepeda.deleted_at IS NOT NULL
+        FROM sepatu
+        WHERE sepatu.nama_sepatu LIKE '%$searchTerm%'
+        AND sepatu.deleted_at IS NOT NULL
         ORDER BY $sortColumn $sortDirection
         ");
     }
 
-        return view ('sepeda.trashbike')->with('data', $data);
+        return view ('sepatu.trashsepatu')->with('data', $data);
     }
 
     public function hardDeleteBike($id) {
         DB::delete("
-        DELETE FROM sepeda
-        WHERE id_sepeda = ?
+        DELETE FROM sepatu
+        WHERE id_sepatu = ?
     ", [
         $id
     ]);
@@ -188,9 +188,9 @@ class BikeController extends Controller
     public function recoverBike($id) {
 
         DB::update("
-        UPDATE sepeda
+        UPDATE sepatu
         SET deleted_at = NULL
-        WHERE id_sepeda = ?
+        WHERE id_sepatu = ?
     ", [
         $id
     ]);

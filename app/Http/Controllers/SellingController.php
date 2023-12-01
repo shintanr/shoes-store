@@ -18,11 +18,11 @@ class SellingController extends Controller
 
         switch ($sortBy) {
             case 'alphabet':
-                $sortColumn = 'sepeda.nama_sepeda';
+                $sortColumn = 'sepatu.nama_sepatu';
                 $sortDirection = 'ASC';
                 break;
             case 'reversed':
-                $sortColumn = 'sepeda.nama_sepeda';
+                $sortColumn = 'sepatu.nama_sepatu';
                 $sortDirection = 'DESC';
                 break;
             case 'latest':
@@ -35,22 +35,22 @@ class SellingController extends Controller
         }
 
         $data = DB::select("
-            SELECT users.*, transaksi.*, sepeda.*, transaksi.harga AS harga_akhir
+            SELECT users.*, transaksi.*, sepatu.*, transaksi.harga AS harga_akhir
             FROM users
             INNER JOIN transaksi ON users.id = transaksi.id_user
-            INNER JOIN sepeda ON transaksi.id_sepeda = sepeda.id_sepeda
-            WHERE sepeda.deleted_at IS NULL
+            INNER JOIN sepatu ON transaksi.id_sepatu = sepatu.id_sepatu
+            WHERE sepatu.deleted_at IS NULL
             ORDER BY $sortColumn $sortDirection
         ");
 
         if ($searchTerm !== '') {
             $data = DB::select("
-                SELECT users.*, transaksi.*, sepeda.*, transaksi.harga AS harga_akhir
+                SELECT users.*, transaksi.*, sepatu.*, transaksi.harga AS harga_akhir
                 FROM users
                 INNER JOIN transaksi ON users.id = transaksi.id_user
-                INNER JOIN sepeda ON transaksi.id_sepeda = sepeda.id_sepeda
-                WHERE sepeda.nama_sepeda LIKE '%$searchTerm%'
-                AND sepeda.deleted_at IS NULL
+                INNER JOIN sepatu ON transaksi.id_sepatu = sepatu.id_sepatu
+                WHERE sepatu.nama_sepatu LIKE '%$searchTerm%'
+                AND sepatu.deleted_at IS NULL
                 ORDER BY $sortColumn $sortDirection
             ");
         }

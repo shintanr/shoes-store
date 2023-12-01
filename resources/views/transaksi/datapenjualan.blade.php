@@ -116,8 +116,8 @@
             <tr>
                 <th scope="row">{{ $index + 1 }}</th>
                 <td>{{ $row->tanggal_transaksi }}</td>
-                <td>{{ $row->nama_sepeda }}</td>
-                <td>{{ $row->jenis_sepeda }}</td>
+                <td>{{ $row->nama_sepatu }}</td>
+                <td>{{ $row->jenis_sepatu }}</td>
                 <td>{{ $row->harga_akhir }}</td>
                 <td>{{ $row->nama_user }}</td>
             </tr>

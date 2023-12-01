@@ -73,7 +73,7 @@
                         <a class="nav-link" href="/seller">Penjual</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="/bike">Sepeda</a>
+                        <a class="nav-link" href="/bike">Sepatu</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="/profile">Profile</a>

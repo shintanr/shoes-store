@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <title>Pengelolaan Toko Sepatu Kelompok 16</title>
+        <title>Pengelolaan Toko Sepatu Kelompok 05</title>
         <link
             href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css"
             rel="stylesheet"
@@ -86,7 +86,7 @@
         </nav>
 
         <div id="headerpenjualan">
-            <h1 id="headerpenjualantext">Edit data sepatu</h1>
+            <h1 id="headerpenjualantext">Pembuatan data sepatu</h1>
         </div>
 
         <div class="container mt-5">
@@ -94,24 +94,20 @@
                 <div class="col-md-6">
                     <div class="card">
                         <div class="card-body">
-                            <form
-                                action="/editbike/{{$currentdata->id_sepeda}}"
-                                method="post"
-                            >
-                                @csrf @method('put')
+                            <form action="/createbike" method="post">
+                                @csrf
                                 <div class="mb-3">
                                     <label
                                         for="exampleInputEmail1"
                                         class="form-label"
-                                        >Merek Sepatu</label
+                                        >Merek sepatu</label
                                     >
                                     <input
                                         type="text"
                                         class="form-control"
                                         id="exampleInputEmail1"
                                         aria-describedby="emailHelp"
-                                        name="merek_sepeda"
-                                        value="{{$currentdata->merek_sepeda}}"
+                                        name="merek_sepatu"
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -121,24 +117,23 @@
                                     <select
                                         class="form-select"
                                         id="role"
-                                        name="jenis_sepeda"
+                                        name="jenis_sepatu"
                                     >
-                                    <option value="Sneakers">Sneakers</option>
-                                    <option value="Sport shoes">Sport shoes</option>
-                                    <option value="Casual shoes">Casual shoes</option>
-                                    <option value="Hiking Boots">Hiking Boots</option>
+                                        <option value="Sneakers">Sneakers</option>
+                                        <option value="Sport shoes">Sport shoes</option>
+                                        <option value="Casual shoes">Casual shoes</option>
+                                        <option value="Hiking Boots">Hiking Boots</option>
                                     </select>
                                 </div>
                                 <div class="mb-3">
                                     <label for="nama" class="form-label"
-                                        >Nama sepatu</label
+                                        >Nama Sepatu</label
                                     >
                                     <input
                                         type="text"
                                         class="form-control"
                                         id="nama"
-                                        name="nama_sepeda"
-                                        value="{{$currentdata->nama_sepeda}}"
+                                        name="nama_sepatu"
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -152,7 +147,6 @@
                                         class="form-control"
                                         id="nomor_telepon"
                                         name="masa_garansi"
-                                        value="{{$currentdata->masa_garansi}}"
                                     />
                                 </div>
                                 <div class="mb-3">
@@ -166,7 +160,6 @@
                                         class="form-control"
                                         id="harga"
                                         name="harga"
-                                        value="{{$currentdata->harga}}"
                                     />
                                 </div>
                                 <div class="mb-3">

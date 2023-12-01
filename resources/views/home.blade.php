@@ -106,7 +106,7 @@
 
         <div id="headerpenjualan">
             <h1 id="headerpenjualantext">
-                Overview 5 penjualan sepatu terakhir
+                Overview 5 penjualan Sepatu terakhir
             </h1>
         </div>
 
@@ -115,8 +115,8 @@
                 <tr>
                     <th scope="col">No</th>
                     <th scope="col">Tanggal pembelian</th>
-                    <th scope="col">Nama sepatu</th>
-                    <th scope="col">Jenis sepatu</th>
+                    <th scope="col">Nama Sepatu</th>
+                    <th scope="col">Jenis Sepatu</th>
                     <th scope="col">Harga</th>
                     <th scope="col">Nama Pembeli</th>
                 </tr>
@@ -126,8 +126,8 @@
                 <tr>
                     <th scope="row">{{ $index + 1 }}</th>
                     <td>{{ $row->tanggal_transaksi }}</td>
-                    <td>{{ $row->nama_sepeda }}</td>
-                    <td>{{ $row->jenis_sepeda }}</td>
+                    <td>{{ $row->nama_sepatu }}</td>
+                    <td>{{ $row->jenis_sepatu }}</td>
                     <td>{{ $row->harga }}</td>
                     <td>{{ $row->nama_user }}</td>
                 </tr>
