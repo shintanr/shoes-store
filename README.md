@@ -1,1 +1,1 @@
-wazzup
+Program guna memenuhi tugas akhir praktikum sistem basis data 2023
