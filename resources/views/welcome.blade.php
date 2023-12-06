@@ -3,19 +3,33 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Ganti 'NamaFont' dengan nama font yang diinginkan, misalnya 'Poppins' -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins">
+
   <style>
     body {
       margin: 0;
       padding: 0;
-      font-family: Arial, sans-serif;
+      font-family: 'Poppins', Arial, sans-serif;
+      background-color: #f2f2f2;
+      overflow: hidden;
+    }
+
+    h1 {
+      margin: 0;
+      color: #000;
+      margin-bottom: 2%;
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.8);
+      background: #ffffff;
       border-radius: 10px;
       box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
       margin: auto;
       max-width: 400px;
+      padding: 20px;
+      text-align: center;
+      font-family: 'Poppins', Arial, sans-serif;
     }
 
     .jumbotron {
@@ -29,20 +43,14 @@
       justify-content: center;
     }
 
-    h1 {
-      margin: 0;
-      color: black;
-      margin-bottom: 2%;
-    }
-
     p {
-      margin-bottom: 10px; 
+      margin-bottom: 10px;
     }
 
     .start-button {
       padding: 10px 20px;
       font-size: 1.5em;
-      background-color: rgb(123, 83, 27);
+      background-color: #7b531b;
       color: #f6fbfc;
       text-decoration: none;
       border: none;
@@ -51,6 +59,7 @@
       transition: background-color 0.3s;
       display: block;
       margin: auto;
+      margin-top: 20px;
     }
 
     .start-button:hover {
@@ -62,9 +71,8 @@
 
   <div class="jumbotron">
     <div class="card">
-      <h1>TOKO SEPATU KELOMPOK 05</h1>
-      <h1>MANAJEMEN TOKO SEPATU</h1>
-      <a href="/login" class="start-button">Start</a>
+      <h1>SHOES STORE</h1>
+      <a href="/login" class="start-button">Mulai</a>
     </div>
   </div>
 
